@@ -1,12 +1,25 @@
 <template>
-  <v-btn class="main-btn" x-large>
+  <v-btn class="main-btn" v-bind="$props" v-on="$listeners">
     <slot/>
   </v-btn>
 </template>
 
 <script>
 export default {
-  props: {},
+  props: {
+    'x-large': {
+      type: Boolean,
+      required: false,
+    },
+  },
+  methods: {
+    superProps() {
+      console.log(this.$props);
+      return {
+        'x-large': true,
+      };
+    },
+  },
 };
 </script>
 

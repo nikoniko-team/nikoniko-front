@@ -34,9 +34,10 @@
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <Button>Registrar</Button>
+        <Button x-large v-on:click="openModal">Registrar</Button>
       </v-col>
     </v-row>
+    <RegisterMood ref="modal"/>
   </v-container>
 </template>
 
@@ -44,12 +45,25 @@
 import Button from '@/components/Button.vue';
 import TitleChip from '@/components/TitleChip.vue';
 import PageTitle from '@/components/PageTitle.vue';
+import RegisterMood from '@/components/RegisterMood.vue';
 
 export default {
   components: {
     Button,
     TitleChip,
     PageTitle,
+    RegisterMood,
+  },
+  data() {
+    return {
+      dialog: false,
+    };
+  },
+  methods: {
+    openModal() {
+      console.log('poadksad');
+      this.$refs.modal.open();
+    },
   },
 };
 </script>
