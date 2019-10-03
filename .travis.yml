@@ -11,16 +11,16 @@ before_install:
   - ulimit -a && free -m
 
 install:
+  - npm install yarn -g
   - node --version
   - npm --version
   - yarn --version
-
 
 addons:
 
 
 script:
-  - yarn install
+  - yarn
   - ulimit -a && free -m
 
 before_cache:
