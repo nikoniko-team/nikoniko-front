@@ -1,0 +1,50 @@
+language: node_js
+node_js:
+  - "10"
+
+cache:
+  yarn: true
+  #directories:
+  #  - node_modules
+
+before_install:
+  - ulimit -a && free -m
+
+install:
+  - node --version
+  - npm --version
+  - yarn --version
+
+
+addons:
+
+
+script:
+  - yarn install
+  - ulimit -a && free -m
+
+before_cache:
+
+
+after_success:
+
+
+after_failure:
+  - echo "FAILURE"
+  - ulimit -a
+  - free -m
+
+before_deploy:
+
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "${HEROKU_API_KEY}"
+  app:
+    master: sandbox-nikoniko-front
+    production: production-nikoniko-front
+
+after_deploy:
+
+after_script:
