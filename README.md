@@ -3,6 +3,13 @@
 
 # nikoniko-front
 
+# SandBox for Testing (Branch master)
+- https://sandbox-nikoniko-front.herokuapp.com/
+
+# Production (Branch production)
+- https://production-nikoniko-front.herokuapp.com/
+
+
 ### Design example:
 ![Drag Racing](docs/demo-calendar.jpg)
 
