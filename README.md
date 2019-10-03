@@ -1,4 +1,10 @@
+[![Build Status](https://travis-ci.org/nikoniko-team/nikoniko-front.svg?branch=master)](https://travis-ci.org/nikoniko-team/nikoniko-front)
+
+
 # nikoniko-front
+
+### Design example:
+![Drag Racing](docs/demo-calendar.jpg)
 
 ## Project setup
 ```
@@ -27,3 +33,5 @@ yarn run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
