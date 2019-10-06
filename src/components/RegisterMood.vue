@@ -7,19 +7,22 @@
         </v-card-title>
         <v-card-text>
           <v-row>
-            <v-col v-for="mood in moods" v-bind:key="mood.id">
-              <v-img
-                v-on:click="select(mood.id)"
-                class="align-center"
-                :src="require('../assets/mood_1.svg')"
-                contain
-                width="64px"
-              />
+            <v-col align="center" v-for="mood in moods" v-bind:key="mood.id">
+              <div class="img-wrapper"
+                v-bind:class="{ active: isSelected(mood) }">
+                <v-img
+                  v-on:click="select(mood)"
+                  class="align-center"
+                  :src="require('../assets/mood_1.svg')"
+                  contain
+                  width="64px"
+                />
+              </div>
             </v-col>
           </v-row>
         </v-card-text>
         <v-card-actions class="justify-center">
-          <Button v-on:click="create">Confirmar</Button>
+          <Button v-on:click="confirm">Confirmar</Button>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -37,6 +40,7 @@ export default {
     dialog: false,
     resolve: null,
     reject: null,
+    selected: null,
     moods: [
       {
         id: 1,
@@ -56,12 +60,15 @@ export default {
         this.reject = reject;
       });
     },
-    create() {
-      this.resolve(true);
+    confirm() {
+      this.resolve(this.selected);
       this.dialog = false;
     },
-    select(idx) {
-      console.log('select index', idx);
+    select(mood) {
+      this.selected = mood;
+    },
+    isSelected(mood) {
+      return this.selected && this.selected.id === mood.id;
     },
   },
 };
@@ -73,5 +80,15 @@ export default {
   .card-title {
     justify-content: center;
     color: var(--v-secondary-base) !important;
+  }
+  .img-wrapper {
+    display: inline-block;
+    padding: 5px;
+    border: 4px solid transparent;
+    cursor: pointer;
+    &.active {
+      border-radius: 50%;
+      border-color: #ffffff;;
+    }
   }
 </style>

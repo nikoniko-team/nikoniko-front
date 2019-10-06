@@ -11,9 +11,7 @@
       <v-col><TitleChip>Terça</TitleChip></v-col>
       <v-col><TitleChip>Quarta</TitleChip></v-col>
       <v-col><TitleChip>Quinta</TitleChip></v-col>
-      <v-col><TitleChip>Sexta</TitleChip></v-col>
-      <v-col><TitleChip>Sabado</TitleChip></v-col>
-      <v-col><TitleChip active>Domingo</TitleChip></v-col>
+      <v-col><TitleChip active>Sexta</TitleChip></v-col>
     </v-row>
     <v-row align="center" class="justify-center">
       <v-col class="title">Thiago</v-col>
@@ -25,8 +23,6 @@
           width="64px"
         />
       </v-col>
-      <v-col></v-col>
-      <v-col></v-col>
       <v-col></v-col>
       <v-col></v-col>
       <v-col></v-col>
