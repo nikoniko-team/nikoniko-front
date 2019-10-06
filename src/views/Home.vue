@@ -7,15 +7,13 @@
     </v-row>
     <v-row class="mt-5">
       <v-col></v-col>
-      <v-col><TitleChip>Segunda</TitleChip></v-col>
-      <v-col><TitleChip>Terça</TitleChip></v-col>
-      <v-col><TitleChip>Quarta</TitleChip></v-col>
-      <v-col><TitleChip>Quinta</TitleChip></v-col>
-      <v-col><TitleChip active>Sexta</TitleChip></v-col>
+      <v-col v-for="(day, index) in weekdays" v-bind:key="index">
+        <TitleChip>{{day}}</TitleChip>
+      </v-col>
     </v-row>
     <v-row align="center" class="justify-center">
       <v-col class="title">Thiago</v-col>
-      <v-col align="center">
+      <v-col v-for="(day, index) in weekdays" v-bind:key="index" align="center">
         <v-img
           class="align-center"
           :src="require('../assets/mood_1.svg')"
@@ -23,10 +21,6 @@
           width="64px"
         />
       </v-col>
-      <v-col></v-col>
-      <v-col></v-col>
-      <v-col></v-col>
-      <v-col></v-col>
     </v-row>
     <v-row>
       <v-col class="text-center">
@@ -53,11 +47,14 @@ export default {
   data() {
     return {
       dialog: false,
+      weekdays: [],
     };
+  },
+  mounted() {
+    this.weekdays = this.$moment.weekdaysShort();
   },
   methods: {
     openModal() {
-      console.log('poadksad');
       this.$refs.modal.open();
     },
   },
