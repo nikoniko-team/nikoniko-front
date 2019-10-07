@@ -1,4 +1,20 @@
+[![Build Status](https://travis-ci.org/nikoniko-team/nikoniko-front.svg?branch=master)](https://travis-ci.org/nikoniko-team/nikoniko-front)
+
+
 # nikoniko-front
+
+### SandBox for Testing (Branch master)
+- https://sandbox-nikoniko-front.herokuapp.com/
+
+### Production (Branch production)
+- https://production-nikoniko-front.herokuapp.com/
+
+#### Back-end Repository
+- https://github.com/nikoniko-team/nikoniko-backend
+
+
+### Design example:
+![Drag Racing](docs/demo-calendar.jpg)
 
 ## Project setup
 ```
@@ -27,3 +43,5 @@ yarn run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
