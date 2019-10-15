@@ -36,7 +36,7 @@ import Button from '@/components/Button.vue';
 import TitleChip from '@/components/TitleChip.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import RegisterMood from '@/components/RegisterMood.vue';
-import mood from '@/services/mood';
+import week from '@/services/week';
 
 export default {
   components: {
@@ -53,7 +53,7 @@ export default {
   },
   mounted() {
     this.weekdays = this.$moment.weekdaysShort();
-    mood.getAll().then(({ data }) => {
+    week.get().then(({ data }) => {
       console.log('api result', data);
     });
   },
