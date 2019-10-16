@@ -72,9 +72,6 @@ export default {
     openModal() {
       this.$refs.modal.open();
     },
-    dayRecord(member, dayIndex) {
-      return member.records[dayIndex] || null;
-    },
   },
 };
 </script>

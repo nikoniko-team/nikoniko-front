@@ -13,7 +13,7 @@
                 <v-img
                   v-on:click="select(mood)"
                   class="align-center"
-                  :src="require('../assets/mood_1.svg')"
+                  :src="mood.url"
                   contain
                   width="64px"
                 />
@@ -31,6 +31,7 @@
 
 <script>
 import Button from './Button.vue';
+import moodService from '@/services/mood';
 
 export default {
   components: {
@@ -41,17 +42,13 @@ export default {
     resolve: null,
     reject: null,
     selected: null,
-    moods: [
-      {
-        id: 1,
-        image: 'null',
-      },
-      {
-        id: 2,
-        image: 'null',
-      },
-    ],
+    moods: [],
   }),
+  mounted() {
+    moodService.getAll().then((moods) => {
+      this.moods = moods;
+    });
+  },
   methods: {
     open() {
       this.dialog = true;
