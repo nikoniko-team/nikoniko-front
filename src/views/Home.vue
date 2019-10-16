@@ -11,12 +11,22 @@
         <TitleChip>{{day}}</TitleChip>
       </v-col>
     </v-row>
-    <v-row align="center" class="justify-center">
-      <v-col class="title">Thiago</v-col>
-      <v-col v-for="(day, index) in weekdays" v-bind:key="index" align="center">
+    <v-row
+      align="center"
+      class="justify-center"
+      v-for="(member, memberIndex) in members" v-bind:key="memberIndex"
+    >
+      <v-col class="title">{{member.name}}</v-col>
+      <v-col
+        v-for="(_, dayIndex) in weekdays"
+        v-bind:key="dayIndex"
+        :set="mood = member.records[dayIndex]"
+        align="center"
+      >
         <v-img
+          v-if="mood"
           class="align-center"
-          :src="require('../assets/mood_1.svg')"
+          :src="mood.url"
           contain
           width="64px"
         />
@@ -49,17 +59,21 @@ export default {
     return {
       dialog: false,
       weekdays: [],
+      members: [],
     };
   },
   mounted() {
     this.weekdays = this.$moment.weekdaysShort();
-    week.get().then(({ data }) => {
-      console.log('api result', data);
+    week.get().then((members) => {
+      this.members = members;
     });
   },
   methods: {
     openModal() {
       this.$refs.modal.open();
+    },
+    dayRecord(member, dayIndex) {
+      return member.records[dayIndex] || null;
     },
   },
 };
