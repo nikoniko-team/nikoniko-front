@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" width="500px">
       <v-card class="card">
         <v-card-title class="card-title">
-          Olá, Gisele! Como vc esta se sentindo?
+          Olá! Como vc esta se sentindo?
         </v-card-title>
         <v-card-text>
           <v-row>
