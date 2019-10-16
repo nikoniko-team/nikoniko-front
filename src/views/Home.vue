@@ -11,12 +11,22 @@
         <TitleChip>{{day}}</TitleChip>
       </v-col>
     </v-row>
-    <v-row align="center" class="justify-center">
-      <v-col class="title">Thiago</v-col>
-      <v-col v-for="(day, index) in weekdays" v-bind:key="index" align="center">
+    <v-row
+      align="center"
+      class="justify-center"
+      v-for="(member, memberIndex) in members" v-bind:key="memberIndex"
+    >
+      <v-col class="title">{{member.name}}</v-col>
+      <v-col
+        v-for="(_, dayIndex) in weekdays"
+        v-bind:key="dayIndex"
+        :set="mood = member.records[dayIndex]"
+        align="center"
+      >
         <v-img
+          v-if="mood"
           class="align-center"
-          :src="require('../assets/mood_1.svg')"
+          :src="mood.url"
           contain
           width="64px"
         />
@@ -36,7 +46,7 @@ import Button from '@/components/Button.vue';
 import TitleChip from '@/components/TitleChip.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import RegisterMood from '@/components/RegisterMood.vue';
-import mood from '@/services/mood';
+import week from '@/services/week';
 
 export default {
   components: {
@@ -49,12 +59,13 @@ export default {
     return {
       dialog: false,
       weekdays: [],
+      members: [],
     };
   },
   mounted() {
     this.weekdays = this.$moment.weekdaysShort();
-    mood.getAll().then(({ data }) => {
-      console.log('api result', data);
+    week.get().then((members) => {
+      this.members = members;
     });
   },
   methods: {
