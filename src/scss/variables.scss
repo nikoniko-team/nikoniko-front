@@ -1,0 +1,16 @@
+// src/sass/main.scss
+@import '~vuetify/src/styles/styles.sass';
+
+@font-face {
+  font-family: "Boston";
+  font-style: normal;
+  font-weight: 400;
+  src: url("~@/assets/fonts/Boston-Family/Boston-Regular.otf") format("otf");
+}
+$body-font-family: 'Boston', 'Roboto', sans-serif !important;
+
+$heading-font-family: $body-font-family, cursive;
+
+@each $heading, $style in $headings {
+    $headings: map-merge($headings, ($heading: map-merge($style, ('font-family': $heading-font-family))));
+}
