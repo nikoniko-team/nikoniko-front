@@ -15,7 +15,7 @@
                   class="align-center"
                   :src="mood.url"
                   contain
-                  width="64px"
+                  width="48px"
                 />
               </div>
             </v-col>
