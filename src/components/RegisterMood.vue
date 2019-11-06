@@ -26,6 +26,7 @@
             <v-col align='center'>
               <div class="img-wrapper active">
                 <v-img
+                  v-on:click="unselectMood()"
                   :src="selectedMood.url"
                   contain
                   width="48px"
@@ -34,7 +35,7 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col align='start'>
+            <v-col align='start '>
               <Chip
                 @click="toggleTag(tag)"
                 v-for="tag in tags"
@@ -136,6 +137,15 @@ export default {
      */
     selectMood(mood) {
       this.selectedMood = mood;
+    },
+
+    /**
+     * Unselect current mood
+     */
+    unselectMood() {
+      this.selectedTags = [];
+      this.tags = [];
+      this.selectedMood = null;
     },
 
     /**
