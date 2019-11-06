@@ -1,5 +1,5 @@
 a<template>
-  <p class="title pa-2 chip" v-bind:class="{ active }">
+  <p class="pa-2 chip" v-bind:class="{ active }">
     <slot/>
   </p>
 </template>

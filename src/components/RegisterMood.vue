@@ -5,24 +5,53 @@
         <v-card-title class="card-title">
           Olá! Como vc esta se sentindo?
         </v-card-title>
-        <v-card-text>
+        <v-card-text v-if='tags.length === 0'>
           <v-row>
             <v-col align="center" v-for="mood in moods" v-bind:key="mood.id">
               <div class="img-wrapper"
-                v-bind:class="{ active: isSelected(mood) }">
+                v-bind:class="{ active: isSelectedMood(mood) }">
                 <v-img
-                  v-on:click="select(mood)"
+                  v-on:click="selectMood(mood)"
                   class="align-center"
                   :src="mood.url"
                   contain
-                  width="64px"
+                  width="48px"
                 />
               </div>
             </v-col>
           </v-row>
         </v-card-text>
+        <v-card-text v-if='tags.length > 0'>
+          <v-row>
+            <v-col align='center'>
+              <div class="img-wrapper active">
+                <v-img
+                  v-on:click="unselectMood()"
+                  :src="selectedMood.url"
+                  contain
+                  width="48px"
+                />
+              </div>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col align='start '>
+              <Chip
+                @click="toggleTag(tag)"
+                v-for="tag in tags"
+                v-bind:key="tag.id"
+                :active="isSelectedTag(tag)"
+                style="margin: 0.3em;text-align: left;"
+              >
+              {{tag.name}}
+              </Chip>
+            </v-col>
+          </v-row>
+        </v-card-text>
         <v-card-actions class="justify-center">
-          <Button v-on:click="confirm">Confirmar</Button>
+          <Button v-on:click="confirm">
+            {{confirmLabel}}
+          </Button>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -31,25 +60,39 @@
 
 <script>
 import Button from './Button.vue';
+import Chip from './Chip.vue';
 import moodService from '@/services/mood';
+import tagService from '@/services/tag';
 
 export default {
   components: {
     Button,
+    Chip,
   },
   data: () => ({
     dialog: false,
     resolve: null,
     reject: null,
-    selected: null,
+    selectedMood: null,
+    selectedTags: [],
+    loading: false,
     moods: [],
+    tags: [],
   }),
   mounted() {
     moodService.getAll().then((moods) => {
       this.moods = moods;
     });
   },
+  computed: {
+    confirmLabel() {
+      return this.loading ? 'Carregando' : 'Confirmar';
+    },
+  },
   methods: {
+    /**
+     * Open dialog
+     */
     open() {
       this.dialog = true;
       return new Promise((resolve, reject) => {
@@ -57,15 +100,89 @@ export default {
         this.reject = reject;
       });
     },
+    /**
+     * Confirm selection
+     */
     confirm() {
-      this.resolve(this.selected);
+      if (!this.selectedMood) {
+        return;
+      }
+
+      if (this.tags.length === 0) {
+        this.loadTags();
+        return;
+      }
+
+      if (this.selectedTags.length === 0) {
+        return;
+      }
+
+      this.close(
+        this.selectedMood,
+        this.selectedTags,
+      );
+    },
+
+    /**
+     * Load tags to select
+     */
+    async loadTags() {
+      this.loading = true;
+      this.tags = await tagService.getAll() || [];
+      this.loading = false;
+    },
+
+    /**
+     * Select mood
+     */
+    selectMood(mood) {
+      this.selectedMood = mood;
+    },
+
+    /**
+     * Unselect current mood
+     */
+    unselectMood() {
+      this.selectedTags = [];
+      this.tags = [];
+      this.selectedMood = null;
+    },
+
+    /**
+     * Select tag
+     */
+    toggleTag(tag) {
+      const prevIndex = this.selectedTags.indexOf(tag.id);
+      if (prevIndex >= 0) {
+        this.selectedTags.splice(prevIndex, 1);
+        return;
+      }
+      this.selectedTags.push(tag.id);
+    },
+
+    /**
+     * Close modal with mood and tag selected
+     */
+    close(mood, tags) {
+      this.resolve({ mood, tags });
+      this.selectedTags = [];
+      this.tags = [];
+      this.selectedMood = null;
       this.dialog = false;
     },
-    select(mood) {
-      this.selected = mood;
+
+    /**
+     * Check if mood is selected
+     */
+    isSelectedMood(mood) {
+      return this.selectedMood && this.selectedMood.id === mood.id;
     },
-    isSelected(mood) {
-      return this.selected && this.selected.id === mood.id;
+
+    /**
+     * Check if tag is selected
+     */
+    isSelectedTag(tag) {
+      return this.selectedTags.indexOf(tag.id) >= 0;
     },
   },
 };
