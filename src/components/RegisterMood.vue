@@ -34,12 +34,13 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col align='center'>
+            <v-col align='start'>
               <Chip
                 @click="toggleTag(tag)"
                 v-for="tag in tags"
                 v-bind:key="tag.id"
                 :active="isSelectedTag(tag)"
+                style="margin: 0.3em;text-align: left;"
               >
               {{tag.name}}
               </Chip>
