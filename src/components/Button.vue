@@ -14,7 +14,6 @@ export default {
   },
   methods: {
     superProps() {
-      console.log(this.$props);
       return {
         'x-large': true,
       };

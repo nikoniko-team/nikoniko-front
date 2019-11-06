@@ -70,7 +70,10 @@ export default {
   },
   methods: {
     openModal() {
-      this.$refs.modal.open();
+      const modal = this.$refs.modal.open();
+      modal.then((selected) => {
+        console.log(selected);
+      });
     },
   },
 };
