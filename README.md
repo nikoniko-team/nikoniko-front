@@ -1,7 +1,8 @@
 [![Build Status](https://travis-ci.org/nikoniko-team/nikoniko-front.svg?branch=master)](https://travis-ci.org/nikoniko-team/nikoniko-front)
 
 
-# nikoniko-front
+# nikoniko-front 
+## Front-end VueJS
 
 ### SandBox for Testing (Branch master)
 - https://sandbox-nikoniko-front.herokuapp.com/
