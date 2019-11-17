@@ -11,11 +11,16 @@ export default {
       type: Boolean,
       required: false,
     },
+    disabled: {
+      type: Boolean,
+      required: false,
+    },
   },
   methods: {
     superProps() {
       return {
         'x-large': true,
+        disabled: false,
       };
     },
   },

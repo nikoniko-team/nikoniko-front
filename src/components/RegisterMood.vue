@@ -49,7 +49,7 @@
           </v-row>
         </v-card-text>
         <v-card-actions class="justify-center">
-          <Button v-on:click="confirm">
+          <Button v-on:click="confirm" :disabled="!readyToRegister()">
             {{confirmLabel}}
           </Button>
         </v-card-actions>
@@ -108,11 +108,6 @@ export default {
         return;
       }
 
-      if (this.tags.length === 0) {
-        this.loadTags();
-        return;
-      }
-
       if (this.selectedTags.length === 0) {
         return;
       }
@@ -137,6 +132,7 @@ export default {
      */
     selectMood(mood) {
       this.selectedMood = mood;
+      this.loadTags();
     },
 
     /**
@@ -183,6 +179,13 @@ export default {
      */
     isSelectedTag(tag) {
       return this.selectedTags.indexOf(tag.id) >= 0;
+    },
+
+    /**
+     * Check if modal is ready to register
+     */
+    readyToRegister() {
+      return this.selectedMood && this.selectedTags.length > 0;
     },
   },
 };
