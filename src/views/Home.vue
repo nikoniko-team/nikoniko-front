@@ -20,13 +20,13 @@
       <v-col
         v-for="(_, dayIndex) in weekdays"
         v-bind:key="dayIndex"
-        :set="mood = member.records[dayIndex]"
+        :set="record = member.records[dayIndex]"
         align="center"
       >
         <v-img
-          v-if="mood"
+          v-if="record"
           class="align-center"
-          :src="mood.url"
+          :src="record.mood.url"
           contain
           width="64px"
         />
