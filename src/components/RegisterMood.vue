@@ -39,7 +39,7 @@
               <Chip
                 @click="toggleTag(tag)"
                 v-for="tag in tags"
-                v-bind:key="tag.id"
+                v-bind:key="tag.tag_id"
                 :active="isSelectedTag(tag)"
                 style="margin: 0.3em;text-align: left;"
               >
@@ -148,12 +148,12 @@ export default {
      * Select tag
      */
     toggleTag(tag) {
-      const prevIndex = this.selectedTags.indexOf(tag.id);
+      const prevIndex = this.selectedTags.indexOf(tag.tag_id);
       if (prevIndex >= 0) {
         this.selectedTags.splice(prevIndex, 1);
         return;
       }
-      this.selectedTags.push(tag.id);
+      this.selectedTags.push(tag.tag_id);
     },
 
     /**
@@ -178,7 +178,7 @@ export default {
      * Check if tag is selected
      */
     isSelectedTag(tag) {
-      return this.selectedTags.indexOf(tag.id) >= 0;
+      return this.selectedTags.indexOf(tag.tag_id) >= 0;
     },
 
     /**
