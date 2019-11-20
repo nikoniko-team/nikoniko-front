@@ -21,7 +21,7 @@ const formatMember = member => ({
  * @returns {*}
  */
 const get = () => axios
-  .get('/week')
+  .get('/week/1/')
   .then(response => response.data)
   .then(response => response.data.members.map(formatMember));
 

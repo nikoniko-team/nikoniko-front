@@ -20,13 +20,13 @@
       <v-col
         v-for="(_, dayIndex) in weekdays"
         v-bind:key="dayIndex"
-        :set="mood = member.records[dayIndex]"
+        :set="record = member.records[dayIndex]"
         align="center"
       >
         <v-img
-          v-if="mood"
+          v-if="record"
           class="align-center"
-          :src="mood.url"
+          :src="record.mood.url"
           contain
           width="64px"
         />
@@ -47,6 +47,7 @@ import TitleChip from '@/components/TitleChip.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import RegisterMood from '@/components/RegisterMood.vue';
 import week from '@/services/week';
+import record from '@/services/record';
 
 export default {
   components: {
@@ -69,10 +70,22 @@ export default {
     });
   },
   methods: {
+    /**
+     * Open mood selection
+     */
     openModal() {
       const modal = this.$refs.modal.open();
-      modal.then((selected) => {
-        console.log(selected);
+      modal.then(this.registerMood);
+    },
+
+    /**
+     * Register mood
+     */
+    registerMood(selected) {
+      record.create({
+        teamId: 1,
+        userId: 1,
+        ...selected,
       });
     },
   },

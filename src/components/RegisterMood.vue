@@ -39,7 +39,7 @@
               <Chip
                 @click="toggleTag(tag)"
                 v-for="tag in tags"
-                v-bind:key="tag.id"
+                v-bind:key="tag.tag_id"
                 :active="isSelectedTag(tag)"
                 style="margin: 0.3em;text-align: left;"
               >
@@ -49,7 +49,7 @@
           </v-row>
         </v-card-text>
         <v-card-actions class="justify-center">
-          <Button v-on:click="confirm">
+          <Button v-on:click="confirm" :disabled="!readyToRegister()">
             {{confirmLabel}}
           </Button>
         </v-card-actions>
@@ -108,11 +108,6 @@ export default {
         return;
       }
 
-      if (this.tags.length === 0) {
-        this.loadTags();
-        return;
-      }
-
       if (this.selectedTags.length === 0) {
         return;
       }
@@ -137,6 +132,7 @@ export default {
      */
     selectMood(mood) {
       this.selectedMood = mood;
+      this.loadTags();
     },
 
     /**
@@ -152,12 +148,12 @@ export default {
      * Select tag
      */
     toggleTag(tag) {
-      const prevIndex = this.selectedTags.indexOf(tag.id);
+      const prevIndex = this.selectedTags.indexOf(tag.tag_id);
       if (prevIndex >= 0) {
         this.selectedTags.splice(prevIndex, 1);
         return;
       }
-      this.selectedTags.push(tag.id);
+      this.selectedTags.push(tag.tag_id);
     },
 
     /**
@@ -182,7 +178,14 @@ export default {
      * Check if tag is selected
      */
     isSelectedTag(tag) {
-      return this.selectedTags.indexOf(tag.id) >= 0;
+      return this.selectedTags.indexOf(tag.tag_id) >= 0;
+    },
+
+    /**
+     * Check if modal is ready to register
+     */
+    readyToRegister() {
+      return this.selectedMood && this.selectedTags.length > 0;
     },
   },
 };
