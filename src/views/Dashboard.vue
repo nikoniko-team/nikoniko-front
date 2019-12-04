@@ -1,16 +1,15 @@
 <template>
   <AdminLayout>
-    <div class="Dashboard">
-      <pre v-text="$attrs"/>
-    </div>
+    <CommentsCard />
   </AdminLayout>
 </template>
 
 <script>
 import AdminLayout from '@/components/AdminLayout.vue';
+import CommentsCard from '@/components/Dashboard/CommentsCard.vue';
 
 export default {
   props: {},
-  components: { AdminLayout },
+  components: { AdminLayout, CommentsCard },
 };
 </script>
