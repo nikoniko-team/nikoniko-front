@@ -102,8 +102,11 @@ export default {
       this.teams = teams;
       this.selectedTeam = team;
     } catch (err) {
-      this.selectedTeam = {};
-      this.teams = [];
+      this.teams = [
+        { id: 1, name: 'Time 1' },
+      ];
+      const [team] = this.teams;
+      this.selectedTeam = team;
     }
   },
   methods: {
