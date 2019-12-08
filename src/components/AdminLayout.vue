@@ -24,6 +24,27 @@
       <v-toolbar-title>Niko Niko</v-toolbar-title>
       <v-spacer/>
       <v-menu bottom left>
+        <template v-slot:activator="{ on } ">
+          <v-btn
+            text
+            v-on="on">
+            {{selectedTeam.name}}
+            <v-icon>mdi-chevron-down</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item>
+            <v-list-item-title
+              v-for="team in teams"
+              :key="team.id"
+              @click="selectTeam(team)"
+            >
+              {{team.name}}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-menu bottom left>
         <template v-slot:activator="{ on }">
           <v-btn
             dark
@@ -62,12 +83,37 @@
 </template>
 
 <script>
+import teamService from '@/services/team';
+
 export default {
   props: {
     source: String,
   },
   data: () => ({
     drawer: null,
+    selectedTeam: {},
+    teams: [
+    ],
   }),
+  async mounted() {
+    try {
+      const teams = await teamService.getAll();
+      const [team] = teams;
+      this.teams = teams;
+      this.selectedTeam = team;
+    } catch (err) {
+      this.selectedTeam = {};
+      this.teams = [];
+    }
+  },
+  methods: {
+    /**
+     * Select team
+     * @param team
+     */
+    selectTeam(team) {
+      this.selectedTeam = team;
+    },
+  },
 };
 </script>

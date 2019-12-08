@@ -19,6 +19,7 @@
     "vue-apexcharts": "^1.5.1",
     "vue-moment": "^4.0.0",
     "vue-router": "^3.0.3",
+    "vue-wordcloud": "^1.1.1",
     "vuetify": "^2.0.0"
   },
   "devDependencies": {
