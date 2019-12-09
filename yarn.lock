@@ -6980,6 +6980,11 @@ randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   dependencies:
     safe-buffer "^5.1.0"
 
+randomcolor@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/randomcolor/-/randomcolor-0.5.4.tgz#df615b13f25b89ea58c5f8f72647f0a6f07adcc3"
+  integrity sha512-nYd4nmTuuwMFzHL6W+UWR5fNERGZeVauho8mrJDUSXdNDbao4rbrUwhuLgKC/j8VCS5+34Ria8CsTDuBjrIrQA==
+
 randomfill@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/randomfill/-/randomfill-1.0.4.tgz#c92196fc86ab42be983f1bf31778224931d61458"
@@ -8706,7 +8711,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^2.6.10:
+vue@^2.5.16, vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
@@ -8722,6 +8727,13 @@ vuetify@^2.1.13:
   version "2.1.13"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.1.13.tgz#58610027b8014c640510eb76e02c5a94e56bef04"
   integrity sha512-wy7RfNmRW60sPNRxl0C7TwRcLRw2Yw+ofGlJTAcoQZnWDtDOriSq0p3Uk8X0jb6tzkeU5Ed0JY6zL0Rb0ZL3lw==
+
+vuewordcloud@^18.7.11:
+  version "18.7.11"
+  resolved "https://registry.yarnpkg.com/vuewordcloud/-/vuewordcloud-18.7.11.tgz#285ae2b6d93ac6f1da6e60141227f68a64b30f24"
+  integrity sha1-KFrittk6xvHabmAUEif2imSzDyQ=
+  dependencies:
+    vue "^2.5.16"
 
 watchpack@^1.6.0:
   version "1.6.0"
