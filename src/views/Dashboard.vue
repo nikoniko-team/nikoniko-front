@@ -5,10 +5,10 @@
         <LatestMonthsCard />
       </v-col>
       <v-col cols="6">
-        <MonthlyChartCard />
+        <TagsCloudCard />
       </v-col>
       <v-col cols="6">
-        <TagsCloudCard />
+        <MonthlyChartCard />
       </v-col>
       <v-col cols="6">
         <CommentsCard />

@@ -2,9 +2,7 @@
   <v-card class="mx-auto">
     <v-card-title>Últimos 3 meses</v-card-title>
     <v-card-text>
-      <div>
-        <VueApexCharts type="line" :options="options" :series="series"></VueApexCharts>
-      </div>
+      <VueApexCharts type="line" :options="options" :series="series"></VueApexCharts>
     </v-card-text>
   </v-card>
 </template>
