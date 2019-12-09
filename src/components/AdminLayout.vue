@@ -5,12 +5,20 @@
       app
     >
       <v-list dense>
-        <v-list-item link to="/">
+        <v-list-item link to="/admin">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title to='/'>Home</v-list-item-title>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link to="/teams">
+          <v-list-item-action>
+            <v-icon>mdi-account-group</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Times</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -23,6 +31,27 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
       <v-toolbar-title>Niko Niko</v-toolbar-title>
       <v-spacer/>
+      <v-menu bottom left>
+        <template v-slot:activator="{ on } ">
+          <v-btn
+            text
+            v-on="on">
+            {{selectedTeam.name}}
+            <v-icon>mdi-chevron-down</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item>
+            <v-list-item-title
+              v-for="team in teams"
+              :key="team.id"
+              @click="selectTeam(team)"
+            >
+              {{team.name}}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
       <v-menu bottom left>
         <template v-slot:activator="{ on }">
           <v-btn
@@ -62,12 +91,43 @@
 </template>
 
 <script>
+import teamService from '@/services/team';
+
 export default {
   props: {
     source: String,
   },
   data: () => ({
     drawer: null,
+    selectedTeam: {},
+    teams: [
+    ],
   }),
+  async mounted() {
+    try {
+      const teams = await teamService.getAll();
+      const [team] = teams;
+      this.teams = teams;
+      this.selectedTeam = team;
+      teamService.setTeam(team);
+    } catch (err) {
+      this.teams = [
+        { id: 1, name: 'Time 1' },
+      ];
+      const [team] = this.teams;
+      this.selectedTeam = team;
+      teamService.setTeam(team);
+    }
+  },
+  methods: {
+    /**
+     * Select team
+     * @param team
+     */
+    selectTeam(team) {
+      this.selectedTeam = team;
+      teamService.setTeam(team);
+    },
+  },
 };
 </script>

@@ -9,9 +9,11 @@ const create = ({
   userId,
   mood,
   tags,
+  comment,
 }) => axios.post(`/record/${teamId}/${userId}`, {
   mood_id: mood.id,
   tags,
+  comment,
 });
 
 export default {

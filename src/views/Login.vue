@@ -65,7 +65,7 @@
       </v-container>
     </v-content>
   </v-app>
-</template>
+</template>t
 
 <script>
 import { ValidationObserver } from 'vee-validate';

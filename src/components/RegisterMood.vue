@@ -35,7 +35,7 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col align='start '>
+            <v-col align='start' cols="12">
               <Chip
                 @click="toggleTag(tag)"
                 v-for="tag in tags"
@@ -45,6 +45,13 @@
               >
               {{tag.name}}
               </Chip>
+            </v-col>
+            <v-col cols="12">
+              <v-textarea
+                name="comment"
+                label="Deixe um comentário"
+                v-model="comment"
+              ></v-textarea>
             </v-col>
           </v-row>
         </v-card-text>
@@ -75,6 +82,7 @@ export default {
     reject: null,
     selectedMood: null,
     selectedTags: [],
+    comment: null,
     loading: false,
     moods: [],
     tags: [],
@@ -115,6 +123,7 @@ export default {
       this.close(
         this.selectedMood,
         this.selectedTags,
+        this.comment,
       );
     },
 
@@ -159,8 +168,8 @@ export default {
     /**
      * Close modal with mood and tag selected
      */
-    close(mood, tags) {
-      this.resolve({ mood, tags });
+    close(mood, tags, comment) {
+      this.resolve({ mood, tags, comment });
       this.selectedTags = [];
       this.tags = [];
       this.selectedMood = null;

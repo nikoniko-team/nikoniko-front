@@ -9,6 +9,8 @@
 
 <script>
 import VueApexCharts from 'vue-apexcharts';
+import reportService from '@/services/report';
+import teamService from '@/services/team';
 
 export default {
   components: { VueApexCharts },
@@ -22,18 +24,21 @@ export default {
         id: 'monthly',
       },
       xaxis: {
-        categories: [
-          'Very Sad',
-          'Sad',
-          'Regular',
-          'Happy',
-          'Very Happy',
-        ],
+        categories: [],
       },
     },
-    series: [{
-      data: [10, 20, 30, 40, 50],
-    }],
+    series: [],
   }),
+  async mounted() {
+    const team = teamService.getTeam();
+    const data = await reportService.getMonthly(team.id);
+    this.options = {
+      ...this.options,
+      xaxis: { categories: data.categories },
+    };
+    this.series = [
+      { data: data.values },
+    ];
+  },
 };
 </script>
