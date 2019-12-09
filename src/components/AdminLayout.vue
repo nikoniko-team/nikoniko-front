@@ -5,12 +5,20 @@
       app
     >
       <v-list dense>
-        <v-list-item link to="/">
+        <v-list-item link to="/admin">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title to='/'>Home</v-list-item-title>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link to="/teams">
+          <v-list-item-action>
+            <v-icon>mdi-account-group</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Times</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>

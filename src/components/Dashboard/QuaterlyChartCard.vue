@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto">
+  <v-card>
     <v-card-title>Últimos 3 meses</v-card-title>
     <v-card-text>
       <VueApexCharts type="line" :options="options" :series="series"></VueApexCharts>
