@@ -17,7 +17,7 @@ const getMonthly = teamId => axios.get(`report/${teamId}/monthly`)
  * Get tags report
  * @returns {Q.Promise<*[]> | Promise<any> | PromiseLike<any>}
  */
-const getTags = () => axios.get('report/tags')
+const getTags = teamId => axios.get(`report/${teamId}/tags`)
   .then(response => response.data.data || []);
 
 export default {

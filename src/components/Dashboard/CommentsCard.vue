@@ -4,7 +4,7 @@
     <v-card-text>
       <v-list three-line>
         <template v-for="(item, index) in comments">
-          <v-list-item :key="item.id">
+          <v-list-item :key="item.id * 4">
             <v-list-item-avatar>
               <v-img :src="item.avatar"></v-img>
             </v-list-item-avatar>
@@ -30,15 +30,21 @@ export default {
     comments: [
       {
         id: 1,
-        avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-        author: 'Ali Connors',
-        comment: 'Lorem ipsum generator',
+        avatar: 'https://picsum.photos/201',
+        author: 'Mickey',
+        comment: 'Baixo engajamento da equipe',
       },
       {
         id: 2,
-        avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-        author: 'Ali Connors',
-        comment: 'Lorem ipsum generator',
+        avatar: 'https://picsum.photos/200',
+        author: 'Minnie',
+        comment: 'O Goofy não faz nada',
+      },
+      {
+        id: 3,
+        avatar: 'https://picsum.photos/202',
+        author: 'Goofy',
+        comment: 'Gosto muito de tecnologias novas',
       },
     ],
   }),

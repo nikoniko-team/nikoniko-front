@@ -16,7 +16,7 @@ export default {
     options: {
       theme: {
         mode: 'dark',
-        palette: 'palette10',
+        palette: 'palette1',
       },
       chart: {
         shadow: {
@@ -39,28 +39,36 @@ export default {
         ],
       },
     },
-    series: [
-      {
-        name: 'Very Sad',
-        data: [15, 10, 5],
-      },
-      {
-        name: 'Sad',
-        data: [20, 10, 5],
-      },
-      {
-        name: 'Regular',
-        data: [10, 15, 20],
-      },
-      {
-        name: 'Happy',
-        data: [15, 20, 25],
-      },
-      {
-        name: 'Very Happy',
-        data: [5, 10, 15],
-      },
-    ],
+    series: [],
   }),
+  mounted() {
+    this.options = {
+      ...this.options,
+      series: [
+
+        {
+          name: 'Muito Triste',
+          data: [0, 1, 10],
+        },
+        {
+          name: 'Triste',
+          data: [0, 0, 1],
+        },
+        {
+          name: 'Neutro',
+          data: [0, 1, 1],
+        },
+        {
+          name: 'Feliz',
+          data: [0, 1, 3],
+        },
+        {
+          name: 'Muito Feliz',
+          data: [0, 5, 2],
+        },
+
+      ],
+    };
+  },
 };
 </script>
