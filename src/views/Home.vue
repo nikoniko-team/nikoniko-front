@@ -1,6 +1,12 @@
 <template>
   <v-container fluid>
-    <v-row>
+    <v-row no-gutters>
+      <v-col offset-md='8'></v-col>
+      <v-col cols='3' align='right' style='font-size: 14px;'>
+        Você está logado como <strong>Manager</strong>
+      </v-col>
+    </v-row>
+    <v-row no-gutters>
     <v-col>
       <PageTitle>Como anda o astral da equipe?</PageTitle>
     </v-col>
@@ -8,7 +14,7 @@
     <v-row class="mt-5">
       <v-col></v-col>
       <v-col v-for="(day, index) in weekdays" v-bind:key="index">
-        <TitleChip>{{day}}</TitleChip>
+        <TitleChip :active='index === 3'>{{day}}</TitleChip>
       </v-col>
     </v-row>
     <v-row
