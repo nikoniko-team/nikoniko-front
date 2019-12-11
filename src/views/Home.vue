@@ -65,9 +65,7 @@ export default {
   },
   mounted() {
     this.weekdays = this.$moment.weekdaysShort();
-    week.get().then((members) => {
-      this.members = members;
-    });
+    this.loadWeek();
   },
   methods: {
     /**
@@ -81,11 +79,19 @@ export default {
     /**
      * Register mood
      */
-    registerMood(selected) {
-      record.create({
+    async registerMood(selected) {
+      await record.create({
         teamId: 1,
         userId: 1,
         ...selected,
+      });
+
+      this.loadWeek();
+    },
+
+    loadWeek() {
+      week.get().then((members) => {
+        this.members = members;
       });
     },
   },

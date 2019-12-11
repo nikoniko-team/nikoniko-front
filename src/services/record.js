@@ -1,5 +1,5 @@
+import * as moment from 'moment';
 import axios from './axios';
-
 /**
  * Create record
  * @returns {*}
@@ -10,11 +10,17 @@ const create = ({
   mood,
   tags,
   comment,
-}) => axios.post(`/record/${teamId}/${userId}`, {
-  mood_id: mood.id,
-  tags,
-  comment,
-});
+}) => {
+  const newTags = tags.map(tagId => ({
+    tag_id: tagId,
+  }));
+  return axios.post(`/record/${teamId}/${userId}`, {
+    date: moment().format('Y-M-D'),
+    mood_id: mood.id,
+    tags: newTags,
+    comment,
+  });
+};
 
 export default {
   create,

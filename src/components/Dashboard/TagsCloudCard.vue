@@ -15,6 +15,7 @@
 import VueWordCloud from 'vuewordcloud';
 import randomcolor from 'randomcolor';
 import reportService from '@/services/report';
+import teamService from '@/services/team';
 
 export default {
   components: {
@@ -24,7 +25,8 @@ export default {
     tags: [],
   }),
   async mounted() {
-    const tags = await reportService.getTags();
+    const team = teamService.getTeam();
+    const tags = await reportService.getTags(team.id);
     this.tags = tags.map(tag => [tag.name, tag.count]);
   },
   methods: {
